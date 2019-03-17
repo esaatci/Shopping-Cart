@@ -1,55 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from "react"
 
-class SizeFilter extends React.Component{
+import List from "./List"
+import Categories from "./Categories"
+import data from "./static/data/products.json"
+import Cart from "./Cart"
 
-  render(){
-    return(
-      <div>
-        size
-        <p>
-          <input type="checkbox" />
-          {' '}
-          X
-          <input type="checkbox" />
-          {' '}
-          XL
-          <input type="checkbox" />
-          {' '}
-          XS
-          <input type="checkbox" />
-          {' '}
-          M
-          <input type="checkbox" />
-          {' '}
-          ML
-        </p>
-      </div>
-    );
+class App extends Component {
+  state = {
+    filter: null,
+    items: data["products"],
+    cart: []
+  };
 
-  }
-}
-class ProductGrid extends React.Component{
-  render() {
-    const product = this.props.product;
-    return (
-      <div>
-      </div>
-    );
-  }
-}
+  addtoCart = item => {
+    this.setState({ cart: [...this.state.cart, item] });
+  };
 
-
-
-class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <SizeFilter/>
+      <div>
+        <div>
+          <Categories />
+        </div>
+        <div>
+          <List items={this.state.items} addtoCart={this.addtoCart} />
+        </div>
+        <div>
+          <Cart cart={this.state.cart} />
+        </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
