@@ -10,11 +10,16 @@ class App extends Component {
     filter: null,
     items: data["products"],
     cart: []
-  };
+  }
 
   addtoCart = item => {
     this.setState({ cart: [...this.state.cart, item] });
-  };
+  }
+   
+  removeFromCart = item => {
+    console.log("click");
+    this.setState({ cart });
+  }
 
   render() {
     return (
